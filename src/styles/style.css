@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  --color-1: rgba(14,154,174,1);
+  --color-2: rgba(42,130,206,0.8);
+  --color-3: rgba(255,223,185,1);
+  --color-4: rgba(28, 72, 110, 0.4);
+  --font-color: white;
+  --50-transparent: rgba(255, 255, 255, 0.5);
+  --75-transparent: rgba(255, 255, 255, 0.75);
+
+}
+body {
+  height: 100%;
+}
+#root {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(42,130,206,0.7880725646286868);
+  background: linear-gradient(167deg, var(--color-1) 0%, var(--color-2) 57%, var(--color-3) 92%);
+  color: var(--font-color);
+  text-align: center;
+}
+
+/* LOCATION INPUT */
+  label {
+    font-weight: 600;
+  }
+  input {
+    padding: 0.3rem 1rem;
+    border: none;
+    border-radius: 100px;
+    box-shadow: 2px 2px 10px #fff;
+    font-style: italic;
+    background-color: var(--50-transparent);
+    color: inherit;
+  }
+  input:focus,
+  input:active,
+  input:focus-visible {
+    border: solid 1px var(--75-transparent);
+    outline: none;
+    outline: 1px solid --75-transparent;
+  }
+  button {
+    padding: 0.3rem 1rem;
+    border: none;
+    border-radius: 100px;
+    box-shadow: 2px 2px 0 var(--75-transparent);
+    background-color: var(--50-transparent);
+    color: var(--font-color);
+  }
+  ::placeholder {
+    color: var(--font-color);
+  }
+  .location-input-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 1rem;
+  }
+  .location-input-container * {
+    margin: 0 0.2rem;
+  }
+
+/* MAIN */
+  main {
+    height: 50%;
+    width: 30%;
+    background: var(--50-transparent);
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px #fff;
+    padding: 2rem;
+  }
+  .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  p {
+    font-size: 1rem;
+  }
+  ul {
+    display: flex;
+    justify-content: space-between;
+  }
+  li {
+    width: 6rem;
+  }
+  li h2 {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  #temperature {
+    font-size: 4rem;
+  }
+  #main-forecast {
+    font-size: 2rem;
+  }
