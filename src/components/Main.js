@@ -5,13 +5,43 @@ class Main extends Component {
     super();
 
     this.state = {
-      location: "Paris",
-      main: "Clear",
-      temperature: 17,
-      feelsLike: 15,
-      wind: 3,
-      humidity: 7,
+      location: "",
+      main: "",
+      temperature: null,
+      feelsLike: null,
+      wind: null,
+      humidity: null,
     }
+  }
+  getLocationInput = () => {
+    const locationInput = document.getElementById("location-input");
+    return locationInput.value;
+  }
+  meterPerSecondToKilometerPerHour = (mps) => {
+    return mps * 3.495;
+  }
+  fetchForecast(location) {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=0982e2845899ef11e0c7aebc11449571&units=metric`, {mode: 'cors'})
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        this.setState({
+          location: response.name,
+          main: response.weather[0].main,
+          temperature: parseInt(response.main.temp),
+          feelsLike: parseInt(response.main.feels_like),
+          wind: parseInt(this.meterPerSecondToKilometerPerHour(response.wind.speed)),
+          humidity: response.main.humidity,
+        });
+      });
+  }
+  componentDidMount() {
+    this.fetchForecast("Paris");
+  }
+  onLocationSubmit = () => {
+    const location = this.getLocationInput();
+    this.fetchForecast(location);
   }
 
   render() {
@@ -20,7 +50,7 @@ class Main extends Component {
         <div className="location-input-container">
           <label for="location-input">Search another location:</label>
           <input id="location-input" type="text" placeholder="ex: Jieyang"></input>
-          <button id="location-submit" type="button">Let's go</button>
+          <button id="location-submit" type="button" onClick={this.onLocationSubmit}>Let's go</button>
         </div>
         <div className="card">
           <h1 id="location" className="forecast">{this.state.location}</h1>
